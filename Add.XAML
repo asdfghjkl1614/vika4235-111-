@@ -1,0 +1,130 @@
+<Window x:Class="Tugashova4.AddInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tugashova4"
+        mc:Ignorable="d"
+        Title="AddInfo" Height="450" Width="800"
+        Background="#FFF0F5">
+    <TabControl Background="#FFB6C1">
+
+        <TabItem Header="Отделения" Background="#FF69B4" Foreground="Black">
+            <Grid>
+                <DataGrid x:Name="EditDepartmentsGrid" Background="White" AutoGenerateColumns="False" Margin="10">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding ID_Department}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Header="Название" Binding="{Binding Title}"/>
+                        <DataGridTextColumn Header="Часы работы" Binding="{Binding Opening_hours}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10">
+                    <Button Content="Добавить" Background="#FF69B4" Foreground="White" Click="AddDepartment_Click" Margin="5" Width="80"/>
+                    <Button Content="Сохранить" Background="#FF69B4" Foreground="White" Click="SaveDepartment_Click" Margin="5" Width="80"/>
+                    <Button Content="Удалить" Background="#FF69B4" Foreground="White" Click="DeleteDepartment_Click" Margin="5" Width="80"/>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+
+        <TabItem Header="Палаты" Background="#FF69B4" Foreground="Black">
+            <Grid>
+                <DataGrid x:Name="EditWardsGrid" Background="White" AutoGenerateColumns="False" Margin="10">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding ID_Ward}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Header="Кол-во коек" Binding="{Binding Number_of_beds}"/>
+                        <DataGridTextColumn Header="Этаж" Binding="{Binding FloorW}"/>
+                        <DataGridComboBoxColumn Header="Отделение" 
+                                              SelectedValueBinding="{Binding ID_Department}"
+                                              SelectedValuePath="ID_Department"
+                                              DisplayMemberPath="Title"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10">
+                    <Button Content="Добавить" Background="#FF69B4" Foreground="White" Click="AddWard_Click" Margin="5" Width="80"/>
+                    <Button Content="Сохранить" Background="#FF69B4" Foreground="White" Click="SaveWard_Click" Margin="5" Width="80"/>
+                    <Button Content="Удалить" Background="#FF69B4" Foreground="White" Click="DeleteWard_Click" Margin="5" Width="80"/>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+
+        <TabItem Header="Пациенты" Background="#FF69B4" Foreground="Black">
+            <Grid>
+                <DataGrid x:Name="EditSicksGrid" Background="White" AutoGenerateColumns="False" Margin="10">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding ID_Sick}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Header="ФИО" Binding="{Binding Full_name}"/>
+                        <DataGridTextColumn Header="Пол" Binding="{Binding Gender}" Width="80"/>
+                        <DataGridTextColumn Header="Диагноз" Binding="{Binding Diagnosis}"/>
+                        <DataGridComboBoxColumn Header="Палата" 
+                                              SelectedValueBinding="{Binding ID_Ward}"
+                                              SelectedValuePath="ID_Ward"
+                                              DisplayMemberPath="ID_Ward"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10">
+                    <Button Content="Добавить" Background="#FF69B4" Foreground="White" Click="AddSick_Click" Margin="5" Width="80"/>
+                    <Button Content="Сохранить" Background="#FF69B4" Foreground="White" Click="SaveSick_Click" Margin="5" Width="80"/>
+                    <Button Content="Удалить" Background="#FF69B4" Foreground="White" Click="DeleteSick_Click" Margin="5" Width="80"/>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+
+        <TabItem Header="Должности" Background="#FF69B4" Foreground="Black">
+            <Grid>
+                <DataGrid x:Name="EditPostsGrid" Background="White" AutoGenerateColumns="False" Margin="10">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding ID_Post}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Header="Название" Binding="{Binding Title}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10">
+                    <Button Content="Добавить" Background="#FF69B4" Foreground="White" Click="AddPost_Click" Margin="5" Width="80"/>
+                    <Button Content="Сохранить" Background="#FF69B4" Foreground="White" Click="SavePost_Click" Margin="5" Width="80"/>
+                    <Button Content="Удалить" Background="#FF69B4" Foreground="White" Click="DeletePost_Click" Margin="5" Width="80"/>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+
+        <TabItem Header="Сотрудники" Background="#FF69B4" Foreground="Black">
+            <Grid>
+                <DataGrid x:Name="EditWorkersGrid" Background="White" AutoGenerateColumns="False" Margin="10">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding ID_Worker}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Header="ФИО" Binding="{Binding Full_name}"/>
+                        <DataGridTextColumn Header="Телефон" Binding="{Binding Telephone}" Width="120"/>
+                        <DataGridTextColumn Header="Стаж" Binding="{Binding Experience}" Width="60"/>
+                        <DataGridComboBoxColumn Header="Должность"
+                                              SelectedValueBinding="{Binding ID_Post}"
+                                              SelectedValuePath="ID_Post"
+                                              DisplayMemberPath="Title"/>
+                        <DataGridComboBoxColumn Header="Отделение"
+                                              SelectedValueBinding="{Binding ID_Department}"
+                                              SelectedValuePath="ID_Department"
+                                              DisplayMemberPath="Title"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10">
+                    <Button Content="Добавить" Background="#FF69B4" Foreground="White" Click="AddWorker_Click" Margin="5" Width="80"/>
+                    <Button Content="Сохранить" Background="#FF69B4" Foreground="White" Click="SaveWorker_Click" Margin="5" Width="80"/>
+                    <Button Content="Удалить" Background="#FF69B4" Foreground="White" Click="DeleteWorker_Click" Margin="5" Width="80"/>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+
+        <TabItem Header="Квалификации" Background="#FF69B4" Foreground="Black">
+            <Grid>
+                <DataGrid x:Name="EditQualificationsGrid" Background="White" AutoGenerateColumns="False" Margin="10">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding ID_Qualification}" IsReadOnly="True" Width="50"/>
+                        <DataGridTextColumn Header="Название" Binding="{Binding Title}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10">
+                    <Button Content="Добавить" Background="#FF69B4" Foreground="White"  Click="AddQualification_Click" Margin="5" Width="80"/>
+                    <Button Content="Сохранить" Background="#FF69B4" Foreground="White"  Click="SaveQualification_Click" Margin="5" Width="80"/>
+                    <Button Content="Удалить" Background="#FF69B4" Foreground="White" Click="DeleteQualification_Click" Margin="5" Width="80"/>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+    </TabControl>
+</Window>
